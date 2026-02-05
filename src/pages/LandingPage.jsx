@@ -74,7 +74,7 @@ const ComingSoon = () => {
           "linear-gradient(180deg, rgba(2,0,36,1) 16%, rgba(9,9,121,1) 100%)",
       }}
     >
-      {/* STARS - FIXED BACKGROUND */}
+      {/* STARS */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {stars.map((s) => (
           <span
@@ -92,41 +92,50 @@ const ComingSoon = () => {
         ))}
       </div>
 
-      {/* CONTENT CONTAINER WITH PARALLAX */}
+      {/* CONTENT */}
       <div
         className="relative z-10 flex flex-col h-full transition-transform duration-200 ease-out"
         style={{
           transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
         }}
       >
-        {/* HEADER */}
-        <header className="px-6 sm:px-12 lg:px-20 pt-6 flex justify-between items-center flex-shrink-0">
-          <div className="flex items-center gap-3 text-xl sm:text-2xl font-semibold">
-  <div />
-  <img
-    src={logo}
-    alt="FoundU Logo"
-    className="
-      h-12
-      sm:h-14
-      md:h-16
-      lg:h-20
-      xl:h-24
-      w-auto
-     drop-shadow-[0_0_14px_rgba(255,255,255,0.35)]
-    "
-  />
-</div>
+        {/* HEADER — DESKTOP ONLY */}
+        <header className="hidden sm:flex px-6 sm:px-12 lg:px-20 pt-6 justify-between items-center">
+          <img
+            src={logo}
+            alt="FoundU Logo"
+            className="
+              h-14
+              md:h-16
+              lg:h-20
+              xl:h-24
+              w-auto
+              drop-shadow-[0_0_14px_rgba(255,255,255,0.35)]
+            "
+          />
 
-
-          <div className="text-sm sm:text-base lg:text-lg text-gray-300 hidden sm:block">
+          <div className="text-sm sm:text-base lg:text-lg text-gray-300">
             Say hello! <span className="text-white">foundu.in@gmail.com</span>
           </div>
         </header>
 
-        {/* MAIN - CENTERED CONTENT */}
+        {/* MAIN */}
         <main className="flex-1 flex flex-col justify-center items-center px-6 sm:px-12 lg:px-20 pb-6">
           <div className="text-center max-w-5xl w-full">
+
+            {/* MOBILE LOGO — ABOVE HEADING */}
+            <div className="flex sm:hidden justify-center mb-10">
+              <img
+                src={logo}
+                alt="FoundU Logo"
+                className="
+                  h-20
+                  w-auto
+                  drop-shadow-[0_0_18px_rgba(255,255,255,0.45)]
+                "
+              />
+            </div>
+
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 sm:mb-8">
               We Are <br /> Coming Soon
             </h1>
@@ -184,23 +193,17 @@ const ComingSoon = () => {
           </div>
         </main>
 
-        {/* FOOTER - COPYRIGHT */}
-        <footer className="px-6 sm:px-12 lg:px-20 pb-4 text-center text-sm text-gray-400 flex-shrink-0">
+        {/* FOOTER */}
+        <footer className="px-6 sm:px-12 lg:px-20 pb-4 text-center text-sm text-gray-400">
           © {new Date().getFullYear()} All rights reserved.
         </footer>
       </div>
 
       <style jsx>{`
         @keyframes twinkle {
-          0%,
-          100% {
-            opacity: 0.4;
-          }
-          50% {
-            opacity: 1;
-          }
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 1; }
         }
-
         .animate-twinkle {
           animation: twinkle 3s infinite ease-in-out;
         }
