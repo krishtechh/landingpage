@@ -180,11 +180,9 @@ const ComingSoon = () => {
 
           {/* BOTTOM SECTION — form */}
           <div className="
-            absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2
-            sm:static sm:transform-none
-            w-[92vw] sm:max-w-2xl sm:w-full
-            mx-auto sm:pb-16 z-30
-          ">
+  w-[92vw] sm:max-w-2xl
+  mx-auto pb-8 sm:pb-16 z-30
+">
             <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-2 sm:p-3 rounded-[2rem] shadow-2xl">
               <form
                 onSubmit={handleSubmit}
