@@ -36,10 +36,9 @@ const ComingSoon = () => {
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState("");
   const [stars, setStars] = useState([]);
-  const [status, setStatus] = useState("idle"); // idle, loading, success
+  const [status, setStatus] = useState("idle");
   const [isMobile, setIsMobile] = useState(false);
 
-  /* ---------- RESPONSIVE DETECTION ---------- */
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640);
     check();
@@ -47,7 +46,6 @@ const ComingSoon = () => {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  /* ---------- STARS ---------- */
   useEffect(() => {
     const starArray = [];
     for (let i = 0; i < 220; i++) {
@@ -132,7 +130,6 @@ const ComingSoon = () => {
               height: s.size,
               left: `${s.left}%`,
               top: `${s.top}%`,
-              // Desktop: full max opacity, static. Mobile: twinkle animation.
               opacity: isMobile ? s.opacity : 1,
               animation: isMobile ? `twinkle ${s.duration}s infinite ease-in-out` : "none",
             }}
@@ -142,27 +139,22 @@ const ComingSoon = () => {
 
       {/* CONTENT */}
       <div className="relative z-10 flex flex-col h-screen">
+
         {/* HEADER — DESKTOP ONLY */}
         <header className="hidden sm:flex px-6 sm:px-12 lg:px-20 pt-6 justify-between items-center">
           <img
             src={logo}
             alt="FoundU Logo"
-            className="
-              h-14
-              md:h-16
-              lg:h-20
-              xl:h-24
-              w-auto
-              drop-shadow-[0_0_14px_rgba(255,255,255,0.35)]
-            "
+            className="h-14 md:h-16 lg:h-20 xl:h-24 w-auto drop-shadow-[0_0_14px_rgba(255,255,255,0.35)]"
           />
         </header>
 
         {/* MAIN */}
         <main className="flex-1 flex flex-col items-center px-6 sm:px-12 lg:px-20 py-10 sm:py-20 relative z-20 sm:justify-between">
 
-          {/* TOP SECTION - TEXT — no float animation */}
+          {/* TOP SECTION */}
           <div className="text-center w-full max-w-5xl mt-6 sm:-mt-6 lg:-mt-10">
+
             {/* MOBILE LOGO */}
             <div className="flex sm:hidden justify-center mb-6">
               <img
@@ -186,9 +178,9 @@ const ComingSoon = () => {
             </p>
           </div>
 
-          {/* BOTTOM SECTION - INPUTS — straddles moon rim on mobile, normal flow on desktop */}
+          {/* BOTTOM SECTION — form */}
           <div className="
-            absolute top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2
+            absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2
             sm:static sm:transform-none
             w-[92vw] sm:max-w-2xl sm:w-full
             mx-auto sm:pb-16 z-30
@@ -198,7 +190,7 @@ const ComingSoon = () => {
                 onSubmit={handleSubmit}
                 className="flex flex-row gap-1.5 sm:flex-row sm:gap-2"
               >
-                {/* Role — shrink on mobile */}
+                {/* Role */}
                 <div className="relative flex-shrink-0">
                   <select
                     value={userType}
@@ -255,27 +247,19 @@ const ComingSoon = () => {
               </form>
             </div>
 
-            <p className="mt-6 text-center text-[10px] sm:text-xs text-gray-500 font-medium tracking-widest uppercase opacity-60">
-              Created by <span className="text-gray-300">FoundU Team</span>
+            <p className="mt-4 text-center text-[10px] sm:text-xs text-gray-400 font-medium tracking-widest uppercase opacity-80">
+              Created by <span className="text-gray-200">FoundU Team</span>
             </p>
           </div>
         </main>
 
-        {/* FOOTER — pushed up with extra bottom padding */}
+        {/* FOOTER */}
         <footer className="relative z-20 px-6 sm:px-12 lg:px-20 pb-6 sm:pb-8 text-center text-sm text-gray-500 font-medium">
           © {new Date().getFullYear()} FoundU. All rights reserved.
         </footer>
       </div>
 
-      {/*
-        PLANET / HORIZON ARC — matches the reference screenshot exactly.
-        A very wide, very tall ellipse that sits below the viewport,
-        showing only the top curved rim — like a planet surface.
-        Mobile: taller/closer so it fills more of the bottom half.
-        Desktop: wider and further down so only the rim peeks up.
-      */}
-
-      {/* Outer diffuse purple glow — sits behind the planet */}
+      {/* Outer diffuse purple glow */}
       <div
         className="absolute left-1/2 -translate-x-1/2 z-[1] pointer-events-none"
         style={{
@@ -287,18 +271,17 @@ const ComingSoon = () => {
         }}
       />
 
-      {/* The planet body */}
+      {/* PLANET ARC — perfect circle, only rim visible */}
       <div
         className="planet-arc absolute left-1/2 -translate-x-1/2 z-[2] rounded-[100%] pointer-events-none"
         style={{
-          /* Mobile: tall enough so ~40vh (nearly half screen) is visible */
-          width: "240vw",
-          height: "80vh",
-          bottom: "-40vh",
+          width: "280vw",
+          height: "280vw",
+          bottom: "-252vw",
           background: "linear-gradient(180deg, rgba(9, 9, 121, 1) 16%, rgba(2, 0, 36, 1) 100%)",
         }}
       >
-        {/* Soft atmospheric glow just below the rim */}
+        {/* Atmospheric glow rim */}
         <div
           style={{
             position: "absolute",
@@ -317,15 +300,15 @@ const ComingSoon = () => {
         @media (min-width: 640px) {
           .planet-arc {
             width: 180vw !important;
-            height: 130vw !important;
-            bottom: -108vw !important;
+            height: 180vw !important;
+            bottom: -158vw !important;
           }
         }
         @media (min-width: 1024px) {
           .planet-arc {
             width: 160vw !important;
-            height: 120vw !important;
-            bottom: -100vw !important;
+            height: 160vw !important;
+            bottom: -138vw !important;
           }
         }
       `}</style>
