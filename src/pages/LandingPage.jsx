@@ -93,7 +93,7 @@ const ComingSoon = () => {
 
       if (response.ok) {
         setStatus("success");
-        toast.success("🎉 You're on the waitlist! We'll be in touch.");
+        toast.success(" You're on the waitlist! We'll be in touch.");
         setEmail("");
         setUserType("");
       } else {
