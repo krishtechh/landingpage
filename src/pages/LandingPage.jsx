@@ -34,6 +34,7 @@ const toastStyles = `
 
 const ComingSoon = () => {
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [userType, setUserType] = useState("");
   const [stars, setStars] = useState([]);
   const [status, setStatus] = useState("idle");
@@ -84,7 +85,7 @@ const ComingSoon = () => {
       const response = await fetch("https://backend-lp.onrender.com/api/waitlist/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, user_type: userType }),
+        body: JSON.stringify({ email, user_type: userType, phoneNumber }),
       });
 
       const data = await response.json();
@@ -93,6 +94,7 @@ const ComingSoon = () => {
         setStatus("success");
         toast.success(" You're on the waitlist! We'll be in touch.");
         setEmail("");
+        setPhoneNumber("");
         setUserType("");
       } else {
         setStatus("idle");
@@ -186,62 +188,88 @@ const ComingSoon = () => {
             <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-2 sm:p-3 rounded-[2rem] shadow-2xl">
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-row gap-1.5 sm:flex-row sm:gap-2"
+                className="flex flex-col sm:flex-row gap-1.5 sm:gap-2"
               >
-                {/* Role */}
-                <div className="relative flex-shrink-0">
-                  <select
-                    value={userType}
-                    onChange={(e) => setUserType(e.target.value)}
+                {/* Line 1 (Mobile) */}
+                <div className="flex gap-1.5 sm:contents">
+                  {/* Role */}
+                  <div className="relative flex-shrink-0">
+                    <select
+                      value={userType}
+                      onChange={(e) => setUserType(e.target.value)}
+                      className="
+                        w-[72px] sm:w-40 px-2 sm:px-5 py-3 sm:py-4 rounded-2xl
+                        bg-white/5
+                        border border-white/10
+                        text-white appearance-none
+                        focus:outline-none focus:ring-2 focus:ring-white/10
+                        cursor-pointer text-[11px] sm:text-sm
+                      "
+                    >
+                      <option value="" disabled className="bg-[#020024]">Role</option>
+                      <option value="freelancer" className="bg-[#020024]">Freelancer</option>
+                      <option value="cofounder" className="bg-[#020024]">Co-founder</option>
+                      <option value="founder" className="bg-[#020024]">Founder</option>
+                      <option value="influencer" className="bg-[#020024]">Influencers</option>
+                    </select>
+                    <span className="absolute top-2 right-2 text-red-500 select-none pointer-events-none">*</span>
+                  </div>
+
+                  <div className="flex-1 relative min-w-0">
+                    <input
+                      type="email"
+                      placeholder="Your Email Address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="
+                        w-full px-3 sm:px-6 py-3 sm:py-4 rounded-2xl
+                        bg-white/5
+                        border border-white/10
+                        text-white placeholder-gray-500
+                        focus:outline-none focus:ring-2 focus:ring-white/10
+                        text-[11px] sm:text-sm
+                      "
+                    />
+                    <span className="absolute top-2 right-3 text-red-500 select-none pointer-events-none">*</span>
+                  </div>
+                </div>
+
+                {/* Line 2 (Mobile) */}
+                <div className="flex gap-1.5 sm:contents">
+                  <div className="flex-1 relative min-w-0">
+                    <input
+                      type="tel"
+                      placeholder="Phone Number"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      className="
+                        w-full px-3 sm:px-6 py-3 sm:py-4 rounded-2xl
+                        bg-white/5
+                        border border-white/10
+                        text-white placeholder-gray-500
+                        focus:outline-none focus:ring-2 focus:ring-white/10
+                        text-[11px] sm:text-sm
+                      "
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
                     className="
-                      w-[72px] sm:w-40 px-2 sm:px-5 py-3 sm:py-4 rounded-2xl
-                      bg-white/5
-                      border border-white/10
-                      text-white appearance-none
-                      focus:outline-none focus:ring-2 focus:ring-white/10
-                      cursor-pointer text-[11px] sm:text-sm
+                      flex-shrink-0 px-3 sm:px-8 py-3 sm:py-4 rounded-2xl
+                      bg-white text-black
+                      font-bold text-[11px] sm:text-sm
+                      hover:bg-indigo-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]
+                      transition-all duration-300
+                      disabled:opacity-50 disabled:cursor-not-allowed
+                      whitespace-nowrap
                     "
                   >
-                    <option value="" disabled className="bg-[#020024]">Role</option>
-                    <option value="freelancer" className="bg-[#020024]">Freelancer</option>
-                    <option value="cofounder" className="bg-[#020024]">Co-founder</option>
-                    <option value="founder" className="bg-[#020024]">Founder</option>
-                  </select>
+                    <span className="sm:hidden">{status === "loading" ? "..." : "Notify"}</span>
+                    <span className="hidden sm:inline">{status === "loading" ? "Joining..." : "Get Notified"}</span>
+                  </button>
                 </div>
-
-                <div className="flex-1 relative min-w-0">
-                  <input
-                    type="email"
-                    placeholder="Your Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="
-                      w-full px-3 sm:px-6 py-3 sm:py-4 rounded-2xl
-                      bg-white/5
-                      border border-white/10
-                      text-white placeholder-gray-500
-                      focus:outline-none focus:ring-2 focus:ring-white/10
-                      text-[11px] sm:text-sm
-                    "
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="
-                    flex-shrink-0 px-3 sm:px-8 py-3 sm:py-4 rounded-2xl
-                    bg-white text-black
-                    font-bold text-[11px] sm:text-sm
-                    hover:bg-indigo-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]
-                    transition-all duration-300
-                    disabled:opacity-50 disabled:cursor-not-allowed
-                    whitespace-nowrap
-                  "
-                >
-                  <span className="sm:hidden">{status === "loading" ? "..." : "Notify"}</span>
-                  <span className="hidden sm:inline">{status === "loading" ? "Joining..." : "Get Notified"}</span>
-                </button>
               </form>
             </div>
 
