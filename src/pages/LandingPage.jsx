@@ -124,7 +124,7 @@ const ComingSoon = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-y-auto overflow-x-hidden text-white bg-black selection:bg-indigo-500/30">
+    <div className="relative w-full text-white bg-black selection:bg-indigo-500/30">
       <style>{toastStyles}</style>
       <ToastContainer
         position="top-right"
@@ -139,7 +139,7 @@ const ComingSoon = () => {
       />
 
       {/* STARS */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         {stars.map((s) => (
           <span
             key={s.id}
@@ -373,7 +373,7 @@ const ComingSoon = () => {
 
       {/* Outer diffuse purple glow */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 z-[1] pointer-events-none"
+        className="fixed left-1/2 -translate-x-1/2 z-[1] pointer-events-none"
         style={{
           bottom: "-10%",
           width: "80%",
