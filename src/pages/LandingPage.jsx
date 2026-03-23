@@ -124,7 +124,7 @@ const ComingSoon = () => {
   };
 
   return (
-    <div className="min-h-[100dvh] relative overflow-x-hidden text-white flex flex-col bg-black">
+    <div className="relative min-h-screen w-full overflow-y-auto overflow-x-hidden text-white bg-black selection:bg-indigo-500/30">
       <style>{toastStyles}</style>
       <ToastContainer
         position="top-right"
@@ -157,7 +157,7 @@ const ComingSoon = () => {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-10 flex flex-col w-full">
 
         {/* HEADER — DESKTOP ONLY */}
         <header className="hidden sm:flex px-6 sm:px-12 lg:px-20 pt-6 justify-between items-center">
