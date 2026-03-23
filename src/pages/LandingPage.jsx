@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/hardik.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -124,7 +124,7 @@ const ComingSoon = () => {
   };
 
   return (
-    <div className="h-[100dvh] relative overflow-hidden text-white flex flex-col bg-black">
+    <div className="min-h-[100dvh] relative overflow-x-hidden text-white flex flex-col bg-black">
       <style>{toastStyles}</style>
       <ToastContainer
         position="top-right"
@@ -157,29 +157,29 @@ const ComingSoon = () => {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 flex flex-col h-screen">
+      <div className="relative z-10 flex flex-col min-h-screen">
 
         {/* HEADER — DESKTOP ONLY */}
         <header className="hidden sm:flex px-6 sm:px-12 lg:px-20 pt-6 justify-between items-center">
           <img
             src={logo}
             alt="FoundU Logo"
-            className="h-14 md:h-16 lg:h-20 xl:h-24 w-auto drop-shadow-[0_0_14px_rgba(255,255,255,0.35)]"
+            className="h-16 md:h-20 lg:h-28 xl:h-32 w-auto drop-shadow-[0_0_14px_rgba(255,255,255,0.35)]"
           />
         </header>
 
         {/* MAIN */}
-        <main className="flex-1 flex flex-col items-center px-6 sm:px-12 lg:px-20 py-10 sm:py-20 relative z-20 sm:justify-between">
+        <main className="flex-1 flex flex-col items-center px-6 sm:px-12 lg:px-20 py-8 sm:py-12 relative z-20">
 
           {/* TOP SECTION */}
-          <div className="text-center w-full max-w-5xl mt-6 sm:-mt-6 lg:-mt-10">
+          <div className="text-center w-full max-w-5xl mt-4 sm:mt-0 lg:-mt-4">
 
             {/* MOBILE LOGO */}
             <div className="flex sm:hidden justify-center mb-6">
               <img
                 src={logo}
                 alt="FoundU Logo"
-                className="h-16 w-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+                className="h-20 w-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
               />
             </div>
 
@@ -200,9 +200,8 @@ const ComingSoon = () => {
           {/* BOTTOM SECTION — form */}
           <div className="
   w-[92vw] sm:max-w-2xl
-  mx-auto pb-8 sm:pb-16 z-30
 ">
-            <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-2 sm:p-3 rounded-[2rem] shadow-2xl">
+            <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-2 sm:p-3 rounded-[2rem] shadow-2xl">
               <form
                 onSubmit={handleSubmit}
                 className="flex flex-col sm:flex-row gap-1.5 sm:gap-2"
@@ -290,14 +289,84 @@ const ComingSoon = () => {
               </form>
             </div>
 
-            <p className="mt-4 text-center text-[10px] sm:text-xs text-gray-400 font-medium tracking-widest uppercase opacity-80">
+            <p className="mt-8 text-center text-[10px] sm:text-xs text-gray-400 font-medium tracking-widest uppercase opacity-80">
               Created by <span className="text-gray-200">FoundU Team</span>
             </p>
+          </div>
+
+          {/* EXCLUSIVE OFFER SECTION */}
+          <div className="w-full flex flex-col items-center mt-12 sm:mt-16 px-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-[10px] sm:text-[11px] font-bold text-indigo-400 uppercase tracking-[0.2em] mb-4 animate-pulse">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+              </span>
+              Limited Time Offer
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-bold text-center mb-2">Early Bird Benefits</h2>
+            <p className="text-gray-400 text-sm sm:text-base text-center max-w-lg mb-8">
+              Become one of our first members and unlock exclusive perks designed to kickstart your journey.
+            </p>
+          </div>
+
+          {/* PERKS SECTION */}
+          <div className="w-full max-w-7xl mx-auto mt-12 sm:mt-20 mb-10 px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+              {/* Founders */}
+              <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 p-6 rounded-3xl hover:bg-white/[0.06] transition-all group">
+                <div className="text-indigo-400 text-xs font-bold uppercase tracking-widest mb-3 opacity-70">Founders</div>
+                <h3 className="text-xl font-bold mb-4">First 100</h3>
+                <ul className="space-y-3 text-sm text-gray-400">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Free Premium Access</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Free Pitch Decks</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> VIP Badges</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> 50% Off Development</li>
+                </ul>
+              </div>
+
+              {/* Co-Founders */}
+              <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 p-6 rounded-3xl hover:bg-white/[0.06] transition-all group">
+                <div className="text-purple-400 text-xs font-bold uppercase tracking-widest mb-3 opacity-70">Co-Founders</div>
+                <h3 className="text-xl font-bold mb-4">First 100</h3>
+                <ul className="space-y-3 text-sm text-gray-400">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div> Free Premium Access</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div> Priority Search</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div> VIP Badges</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div> Mentorship Credits</li>
+                </ul>
+              </div>
+
+              {/* Freelancers */}
+              <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 p-6 rounded-3xl hover:bg-white/[0.06] transition-all group">
+                <div className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3 opacity-70">Freelancers</div>
+                <h3 className="text-xl font-bold mb-4">First 100</h3>
+                <ul className="space-y-3 text-sm text-gray-400">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 0% Commission Projects</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Featured Profile</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Priority Matching</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Skill Verifications</li>
+                </ul>
+              </div>
+
+              {/* Influencers */}
+              <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 p-6 rounded-3xl hover:bg-white/[0.06] transition-all group">
+                <div className="text-pink-400 text-xs font-bold uppercase tracking-widest mb-3 opacity-70">Influencers</div>
+                <h3 className="text-xl font-bold mb-4">First 100</h3>
+                <ul className="space-y-3 text-sm text-gray-400">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-pink-500"></div> No Commission Brand Deals</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-pink-500"></div> Exclusive Sponsorships</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-pink-500"></div> Verified Badge</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-pink-500"></div> Featured in Campaigns</li>
+                </ul>
+              </div>
+
+            </div>
           </div>
         </main>
 
         {/* FOOTER */}
-        <footer className="relative z-20 px-6 sm:px-12 lg:px-20 pb-6 sm:pb-8 text-center text-sm text-gray-500 font-medium">
+        <footer className="relative z-20 px-6 sm:px-12 lg:px-20 pb-10 sm:pb-12 text-center text-sm text-gray-500 font-medium">
           © {new Date().getFullYear()} FoundU. All rights reserved.
         </footer>
       </div>
@@ -316,11 +385,11 @@ const ComingSoon = () => {
 
       {/* PLANET ARC — perfect circle, only rim visible */}
       <div
-        className="planet-arc absolute left-1/2 -translate-x-1/2 z-[2] rounded-[100%] pointer-events-none"
+        className="planet-arc fixed left-1/2 -translate-x-1/2 z-[2] rounded-[100%] pointer-events-none"
         style={{
           width: "280vw",
           height: "280vw",
-          bottom: "-252vw",
+          bottom: "-258vw",
           background: "linear-gradient(180deg, rgba(9, 9, 121, 1) 16%, rgba(2, 0, 36, 1) 100%)",
         }}
       >
@@ -344,14 +413,14 @@ const ComingSoon = () => {
           .planet-arc {
             width: 180vw !important;
             height: 180vw !important;
-            bottom: -158vw !important;
+            bottom: -162vw !important;
           }
         }
         @media (min-width: 1024px) {
           .planet-arc {
             width: 160vw !important;
             height: 160vw !important;
-            bottom: -138vw !important;
+            bottom: -142vw !important;
           }
         }
       `}</style>
