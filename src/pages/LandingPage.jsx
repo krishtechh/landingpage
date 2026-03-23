@@ -85,8 +85,8 @@ const ComingSoon = () => {
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
 
     try {
-      // const response = await fetch("https://backend-lp.onrender.com/api/waitlist/join", {
-        const response = await fetch("http://localhost:4000/api/waitlist/join", {
+      const response = await fetch("https://backend-lp.onrender.com/api/waitlist/join", {
+        // const response = await fetch("http://localhost:4000/api/waitlist/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, user_type: userType, phoneNumber }),
