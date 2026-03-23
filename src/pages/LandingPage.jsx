@@ -81,14 +81,25 @@ const ComingSoon = () => {
     }
 
     setStatus("loading");
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
     try {
-      const response = await fetch("https://backend-lp.onrender.com/api/waitlist/join", {
+      // const response = await fetch("https://backend-lp.onrender.com/api/waitlist/join", {
+        const response = await fetch("http://localhost:4000/api/waitlist/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, user_type: userType, phoneNumber }),
+        signal: controller.signal,
       });
 
-      const data = await response.json();
+      clearTimeout(timeoutId);
+
+      let data = {};
+      const contentType = response.headers.get("content-type");
+      if (response.status !== 204 && contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      }
 
       if (response.ok) {
         setStatus("success");
@@ -101,8 +112,14 @@ const ComingSoon = () => {
         toast.error(data.message || "Something went wrong. Please try again.");
       }
     } catch (err) {
+      clearTimeout(timeoutId);
+      console.error("Submission error:", err);
       setStatus("idle");
-      toast.error("Could not connect to the server. Please try again.");
+      if (err.name === 'AbortError') {
+        toast.error("Request timed out. Please try again.");
+      } else {
+        toast.error("Could not connect to the server. Please check your internet and try again.");
+      }
     }
   };
 
@@ -339,7 +356,7 @@ const ComingSoon = () => {
         }
       `}</style>
 
-      <style jsx>{`
+      <style>{`
         @keyframes twinkle {
           0%, 100% { opacity: 0.2; transform: scale(1); }
           50% { opacity: 0.6; transform: scale(1.1); }
